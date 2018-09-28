@@ -26,7 +26,7 @@ namespace Roulette
             //    spinWheel.Spin();
             //    displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
             //    determineWin.IsSpecificNumberWin(spinWheel, numberBet, rouletteBoard);
-            }
+            //}
             do
             {
                 getBet.DisplayPossibleBets();
