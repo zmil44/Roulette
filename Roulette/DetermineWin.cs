@@ -10,7 +10,7 @@ namespace Roulette
     {
         public void IsSpecificNumberWin(SpinWheel spinWheel, SpecificNumberBet specificNumberBet,Board[] rouletteBoard)
         {
-            if(rouletteBoard[spinWheel.winningBin+1].number==specificNumberBet.numberBettingOn)
+            if(rouletteBoard[spinWheel.winningBin].number==specificNumberBet.numberBettingOn)
             {
                 Console.WriteLine("Your bet won!");
             }
@@ -19,7 +19,8 @@ namespace Roulette
                 Console.WriteLine("Your bet did not win");
             }
         }
-
+        //TODO add rouletteBoard here and use that to get actual number
+        //TODO cant have 0 or 00 as even or odd numbers
         public void IsEvenOddsWin(SpinWheel spinWheel, EvenOrOdd evenOrOddBet)
         {
             if (evenOrOddBet.evenOrOdd ==true && (spinWheel.winningBin+1%2==0))
@@ -53,37 +54,45 @@ namespace Roulette
 
         }
 
-        public void IsLowHighWin(SpinWheel spinWheel, LowHigh lowHighBet)
+        public void IsLowHighWin(SpinWheel spinWheel, LowHigh lowHighBet, Board[] rouletteBoard)
         {
-            if(spinWheel.winningBin+1 >18)
+            if(rouletteBoard[spinWheel.winningBin+1].number >18 && rouletteBoard[spinWheel.winningBin + 1].number <= 36 && lowHighBet.high==true)
             {
-
+                Console.WriteLine("Your high bet won");
+            }
+            else if (rouletteBoard[spinWheel.winningBin + 1].number >=1&& rouletteBoard[spinWheel.winningBin + 1].number <= 18 && lowHighBet.high == false)
+            {
+                Console.WriteLine("Your low bet won");
+            }
+            else
+            {
+                Console.WriteLine("Your low high bet did not win");
             }
         }
 
-        public void IsDozensWin()
+        public void IsDozensWin(SpinWheel spinWheel)
         {
 
         }
-        public void IsColumnsWin()
-        {
-
-        }
-
-        public void IsRowWin()
+        public void IsColumnsWin(SpinWheel spinWheel)
         {
 
         }
 
-        public void IsDoubleRowsWin()
+        public void IsRowWin(SpinWheel spinWheel)
         {
 
         }
-        public void IsSplitWin()
+
+        public void IsDoubleRowsWin(SpinWheel spinWheel)
         {
 
         }
-        public void IsCornerWin()
+        public void IsSplitWin(SpinWheel spinWheel)
+        {
+
+        }
+        public void IsCornerWin(SpinWheel spinWheel)
         {
 
         }

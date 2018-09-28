@@ -9,28 +9,26 @@ namespace Roulette
 
     class GetBet
     {
-        public GetBet()
-        {
-        }
         public void DisplayPossibleBets()
         {
             Console.WriteLine("1. Specific number");
             Console.WriteLine("2. Color");
             Console.WriteLine("3. Even or Odd");
-            Console.WriteLine("4. lows (1-18) or Highs (19-36");
+            Console.WriteLine("4. Lows (1-18) or Highs (19-36");
             Console.WriteLine("5. Dozens (1-12, 13-24, 25-36");
-            Console.WriteLine("6. columns (first second or third)");
+            Console.WriteLine("6. Columns (first second or third)");
             Console.WriteLine("7. Street (rows) (1,2,3) (4,5,6) etc etc");
-            Console.WriteLine("8. numbers double rows");
-            Console.WriteLine("9. split: edge of any two contiguos numbers");
-            Console.WriteLine("10. corner intersecion of any four contiguous numbers (ie 1/2/4/5 or 23/24/26/27");
+            Console.WriteLine("8. Numbers double rows");
+            Console.WriteLine("9. Split: edge of any two contiguos numbers");
+            Console.WriteLine("10. Corner intersecion of any four contiguous numbers (ie 1/2/4/5 or 23/24/26/27");
+            Console.WriteLine("0. Quit.");
 
         }
 
         public int GetBetCategoryChoice()
         {
-            int categoryChoice=0;
-            while (categoryChoice <= 0|| categoryChoice>10)
+            int categoryChoice=-1;
+            while (categoryChoice < 0|| categoryChoice>10)
             {
                 try
                 {
@@ -56,10 +54,8 @@ namespace Roulette
             {
                 try
                 {
-                    Console.WriteLine("Enter the number you would like to bet on (for 0 enter 37 and for 00 enter 38): ");
+                    Console.WriteLine("Enter the number you would like to bet on (for 00 enter 37): ");
                     bet = int.Parse(Console.ReadLine());
-                    SpecificNumberBet numberBet = new SpecificNumberBet(bet - 1);
-
                 }
                 catch (FormatException e)
                 {
@@ -72,40 +68,62 @@ namespace Roulette
             }
             return bet - 1;
         }
+        public char GetColorBet()
+        {
+            char colorBet = 'N';
+            while(colorBet!='R'||colorBet !='B')
+            {
+                Console.WriteLine("What Color would you like to bet on? enter r for red and b for black");
+                colorBet = char.Parse(Console.ReadLine());
+                colorBet = char.ToUpper(colorBet);
+            }
+            return colorBet;
+        }
+        public bool EvenOddBet()
+        {
+            bool evenOdd;
+            char input = 'n';
+            while(input!='E'||input!='O')
+            {
+                Console.WriteLine("Would you like even or odds? Enter e for evens and o for odds");
+                input = char.Parse(Console.ReadLine());
+                input = char.ToUpper(input);
+            }
+            if(input=='E')
+            {
+                evenOdd = true;
+            }
+            else
+            {
+                evenOdd = false;
+            }
+            return evenOdd;
+        }
 
     }
+
+    //Structs for bets
     public  struct SpecificNumberBet
     {
-        public int numberBettingOn { get; }
-        public SpecificNumberBet(int number)
-        {
-            numberBettingOn = number;
-        }
+        public int numberBettingOn { get; set; }
     }
 
     public struct ColorBet
     {
-        public char colorBettingOn {get; }
-        public ColorBet(char color)
-        {
-            colorBettingOn = color;
-        }
+        public char colorBettingOn { get; set; }
+
     }
 
     public struct EvenOrOdd
     {
-        public bool evenOrOdd { get; }
-        public EvenOrOdd(bool evenOrOdd)
-        {
-            this.evenOrOdd = evenOrOdd;
-        }
+        public bool evenOrOdd { get; set; }
     }
     public struct LowHigh
     {
-        bool lowHigh;
-        public LowHigh(bool lowHigh)
+        public bool high { get; set; }
+        public void NewLowHigh(bool high)
         {
-            this.lowHigh = lowHigh;
+            this.high = high;
         }
     }
     public struct Dozen
@@ -118,25 +136,25 @@ namespace Roulette
     }
     public struct Columns
     {
-        public int column { get; }
-        public Columns(int column)
+        public int column { get; set; }
+        public void NewColumns(int column)
         {
             this.column = column;
         }
     }
     public struct Rows
     {
-        public int row { get; }
-        public Rows(int row)
+        public int row { get; set; }
+        public void NewRows(int row)
         {
             this.row = row;
         }
     }
     public struct DoubleRows
     {
-        public int row1 { get; }
-        public int row2 { get; }
-        public DoubleRows(int row1, int row2)
+        public int row1 { get; set; }
+        public int row2 { get; set; }
+        public void NewDoubleRows(int row1, int row2)
         {
             this.row1 = row1;
             this.row2 = row2;
@@ -144,9 +162,9 @@ namespace Roulette
     }
     public struct Split
     {
-        int number1 { get; }
-        int number2 { get; }
-        public Split(int number1, int number2)
+        int number1 { get; set; }
+        int number2 { get; set; }
+        public void NewSplit(int number1, int number2)
         {
             this.number1 = number1;
             this.number2 = number2;
@@ -154,11 +172,11 @@ namespace Roulette
     }
     public struct CornerIntersection
     {
-        public int number1 { get; }
-        public int number2 { get; }
-        public int number3 { get; }
-        public int number4 { get; }
-        public CornerIntersection(int number1, int number2, int number3, int number4)
+        public int number1 { get; set; }
+        public int number2 { get; set; }
+        public int number3 { get; set; }
+        public int number4 { get; set; }
+        public void NewCornerIntersection(int number1, int number2, int number3, int number4)
         {
             this.number1 = number1;
             this.number2 = number2;

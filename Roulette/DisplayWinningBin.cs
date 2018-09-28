@@ -10,15 +10,15 @@ namespace Roulette
     {
         public void DisplayResult(SpinWheel spinWheel,Board[] rouletteBoard)
         {
-            if (spinWheel.winningBin + 1 == 37)
+            if (spinWheel.winningBin == 37)
             {
                 Console.WriteLine($"The ball landed on 00 Green!");
 
             }
             else
             {
-                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningBin + 1].number} " +
-                    $"{rouletteBoard[spinWheel.winningBin + 1].color}!");
+                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningBin].number} " +
+                    $"{rouletteBoard[spinWheel.winningBin].color}!");
             }
         }
     }
