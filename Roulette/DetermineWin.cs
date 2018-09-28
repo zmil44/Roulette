@@ -23,11 +23,11 @@ namespace Roulette
         //TODO cant have 0 or 00 as even or odd numbers
         public void IsEvenOddsWin(SpinWheel spinWheel, EvenOrOdd evenOrOddBet)
         {
-            if (evenOrOddBet.evenOrOdd ==true && (spinWheel.winningBin+1%2==0))
+            if (evenOrOddBet.evenOrOdd ==true && (spinWheel.winningBin%2==0))
             {
                 Console.WriteLine("Your Even Bet won");
             }
-            else if (evenOrOddBet.evenOrOdd == false && (spinWheel.winningBin + 1 % 2 != 0))
+            else if (evenOrOddBet.evenOrOdd == false && (spinWheel.winningBin % 2 != 0))
             {
                 Console.WriteLine("Your odd bet won");
             }
@@ -56,11 +56,11 @@ namespace Roulette
 
         public void IsLowHighWin(SpinWheel spinWheel, LowHigh lowHighBet, Board[] rouletteBoard)
         {
-            if(rouletteBoard[spinWheel.winningBin+1].number >18 && rouletteBoard[spinWheel.winningBin + 1].number <= 36 && lowHighBet.high==true)
+            if(rouletteBoard[spinWheel.winningBin].number >18 && rouletteBoard[spinWheel.winningBin].number <= 36 && lowHighBet.high==true)
             {
                 Console.WriteLine("Your high bet won");
             }
-            else if (rouletteBoard[spinWheel.winningBin + 1].number >=1&& rouletteBoard[spinWheel.winningBin + 1].number <= 18 && lowHighBet.high == false)
+            else if (rouletteBoard[spinWheel.winningBin].number >=1&& rouletteBoard[spinWheel.winningBin].number <= 18 && lowHighBet.high == false)
             {
                 Console.WriteLine("Your low bet won");
             }
