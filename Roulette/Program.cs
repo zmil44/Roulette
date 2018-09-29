@@ -56,6 +56,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsSpecificNumberWin(spinWheel, specificNumberBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 2:
@@ -64,6 +65,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsRedBlackWin(spinWheel,colorBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 3:
@@ -72,6 +74,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsEvenOddsWin(spinWheel, evenOrOddBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 4:
@@ -80,6 +83,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsLowHighWin(spinWheel, lowHighBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 5:
@@ -88,6 +92,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsDozensWin(spinWheel, rouletteBoard, dozenBet);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 6:
@@ -96,6 +101,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsColumnsWin(spinWheel, columnBet);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 7:
@@ -104,6 +110,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsRowWin(spinWheel, rowBet);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 8:
@@ -112,6 +119,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsDoubleRowsWin(spinWheel, doubleRowBet);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 9:
@@ -120,6 +128,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsSplitWin(spinWheel, splitBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                     case 10:
@@ -128,6 +137,7 @@ namespace Roulette
                             spinWheel.Spin();
                             displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
                             determineWin.IsCornerWin(spinWheel, cornerBet, rouletteBoard);
+                            displayPossibleWinningBets.DisplayPossibleWins(spinWheel, rouletteBoard);
                             break;
                         }
                 }
