@@ -22,7 +22,7 @@ namespace Roulette
             Rows rowBet = new Rows();
             DoubleRows doubleRowBet = new DoubleRows();
             Split splitBet = new Split();
-            CornerBet cornerBet = new CornerBet();
+            Corner cornerBet = new Corner();
             SpinWheel spinWheel = new SpinWheel(rng);
             DetermineWin determineWin = new DetermineWin();
             DisplayPossibleWinningBets displayPossibleWinningBets = new DisplayPossibleWinningBets();

@@ -165,19 +165,123 @@ namespace Roulette
             }
             return bet;
         }
+        public int RowBet()
+        {
+
+            int bet = 0;
+            while (bet <= 0 || bet > 12)
+            {
+                try
+                {
+                    Console.WriteLine("Enter the row you would like to bet on (use 1-12)");
+                    bet = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+
+            }
+            return bet;
+        }
+        public void DoubleRowBet(DoubleRows doubleRowBet)
+        {
+            int bet = 0;
+            int bet2 = 12;
+            while (bet <= 0 && bet > 12 && (bet + 1 == bet2 || bet - 1 == bet2))
+            {
+                try
+                {
+                    Console.WriteLine("Enter the row you would like to bet on (use 1-12)");
+                    bet = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the second row you would like to bet on (use 1-12, this row must be next to your first row)");
+                    bet2 = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+            }
+            doubleRowBet.row1 = bet;
+            doubleRowBet.row2 = bet2;
+        }
+        public void SplitBet(Split split)
+        {
+            int bet = 0;
+            int bet2 = 37;
+            while (bet <= 0 && bet > 36 && (Math.Abs(bet - bet2) <= 3 && Math.Abs(bet - bet2) != 2))
+            {
+                try
+                {
+                    Console.WriteLine("Enter the first number you would like to split");
+                    bet = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the second number you would like to split");
+                    bet2 = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+            }
+            split.number1 = bet;
+            split.number2 = bet2;
+
+        }
+        public void CornerBet(Corner corner)
+        {
+            int num1=0, num2=0, num3=0, num4=0;
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the first number of your corner");
+                    num1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the second number of your corner");
+                    num2 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the third number of your corner");
+                    num3 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the fourth number of your corner");
+                    num4 = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+            } while (((num1 >= 1 && num1 <= 36) && (num2 >= 1 && num2 <= 36) && (num3 >= 1 && num3 <= 36) && (num4 >= 1 && num4 <= 36))
+            && (Math.Abs(num1-num2)<=4 && Math.Abs(num1 - num3) <= 4 && Math.Abs(num1 - num4) <= 4 ));
+            corner.number1 = num1;
+            corner.number2 = num2;
+            corner.number3 = num3;
+            corner.number4 = num4;
+        }
+        
     }
         //Structs for bets
     public  struct SpecificNumberBet
     {
         public int numberBettingOn { get; set; }
     }
-
     public struct ColorBet
     {
         public char colorBettingOn { get; set; }
 
     }
-
     public struct EvenOrOdd
     {
         public bool evenOrOdd { get; set; }
@@ -199,7 +303,7 @@ namespace Roulette
     }
     public struct Rows
     {
-        public int row { get; set; }
+        public int row{ get; set; }
 
     }
     public struct DoubleRows
@@ -214,7 +318,7 @@ namespace Roulette
         public int number2 { get; set; }
 
     }
-    public struct CornerBet
+    public struct Corner
     {
         public int number1 { get; set; }
         public int number2 { get; set; }

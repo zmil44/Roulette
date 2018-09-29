@@ -145,7 +145,7 @@ namespace Roulette
             }
 
         }
-        public void IsCornerWin(SpinWheel spinWheel, CornerBet cornerBet, Board[,] rouletteBoard)
+        public void IsCornerWin(SpinWheel spinWheel, Corner cornerBet, Board[,] rouletteBoard)
         {
             if (rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].number == cornerBet.number1
                 || rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].number == cornerBet.number2
