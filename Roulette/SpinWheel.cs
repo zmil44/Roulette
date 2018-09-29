@@ -9,14 +9,16 @@ namespace Roulette
     class SpinWheel
     {
         Random rng;
-        public int winningBin { set; get; }
+        public int winningRow { set; get; }
+        public int winningColumn { get; set; }
         public SpinWheel(Random rng)
         {
             this.rng = rng;
         }
         public void Spin()
         {
-            winningBin = rng.Next(37);
+            winningRow = rng.Next(3);
+            winningColumn = rng.Next(12);
         }
     }
 }

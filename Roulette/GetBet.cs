@@ -27,8 +27,8 @@ namespace Roulette
 
         public int GetBetCategoryChoice()
         {
-            int categoryChoice=-1;
-            while (categoryChoice < 0|| categoryChoice>10)
+            int categoryChoice = -1;
+            while (categoryChoice < 0 || categoryChoice > 10)
             {
                 try
                 {
@@ -50,11 +50,11 @@ namespace Roulette
         public int GetNumberBet()
         {
             int bet = 0;
-            while (bet<= 0 || bet > 38)
+            while (bet <= 0 || bet > 38)
             {
                 try
                 {
-                    Console.WriteLine("Enter the number you would like to bet on (for 00 enter 37): ");
+                    Console.WriteLine("Enter the number you would like to bet on (1-36): ");
                     bet = int.Parse(Console.ReadLine());
                 }
                 catch (FormatException e)
@@ -66,12 +66,12 @@ namespace Roulette
                     Console.WriteLine("Please try again.");
                 }
             }
-            return bet - 1;
+            return bet;
         }
         public char GetColorBet()
         {
             char colorBet = 'N';
-            while(colorBet!='R'||colorBet !='B')
+            while (colorBet != 'R' || colorBet != 'B')
             {
                 Console.WriteLine("What Color would you like to bet on? enter r for red and b for black");
                 colorBet = char.Parse(Console.ReadLine());
@@ -79,17 +79,17 @@ namespace Roulette
             }
             return colorBet;
         }
-        public bool EvenOddBet()
+        public bool EvensOdds()
         {
             bool evenOdd;
             char input = 'n';
-            while(input!='E'||input!='O')
+            while (input != 'E' || input != 'O')
             {
                 Console.WriteLine("Would you like even or odds? Enter e for evens and o for odds");
                 input = char.Parse(Console.ReadLine());
                 input = char.ToUpper(input);
             }
-            if(input=='E')
+            if (input == 'E')
             {
                 evenOdd = true;
             }
@@ -99,10 +99,74 @@ namespace Roulette
             }
             return evenOdd;
         }
+        public bool LowHighBet()
+        {
+            bool lowHigh;
+            char input = 'n';
+            while (input != 'L' || input != 'H')
+            {
+                Console.WriteLine("Would you like low or high? Enter l for low and h for high");
+                input = char.Parse(Console.ReadLine());
+                input = char.ToUpper(input);
+            }
+            if (input == 'E')
+            {
+                lowHigh = true;
+            }
+            else
+            {
+                lowHigh = false;
+            }
+            return lowHigh;
+        }
+        public int DozensBet()
+        {
+            int bet = 0;
+            while (bet <= 0 || bet > 3)
+            {
+                try
+                {
+                    Console.WriteLine("Enter the dozen you would like to bet on " +
+                        "(enter 1 for 1-12, enter 2 for 13-24, enter 3 for 25-36): ");
+                    bet = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
 
+            }
+            return bet;
+        }
+        public int ColumnBet()
+        {
+            int bet = 0;
+            while (bet <= 0 || bet > 3)
+            {
+                try
+                {
+                    Console.WriteLine("Enter the column you would like to bet on " +
+                        "(enter 3 for the bottom column, enter 2 for middle column, enter 1 for the top column): ");
+                    bet = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("Please try again.");
+                }
+
+            }
+            return bet;
+        }
     }
-
-    //Structs for bets
+        //Structs for bets
     public  struct SpecificNumberBet
     {
         public int numberBettingOn { get; set; }
@@ -121,69 +185,41 @@ namespace Roulette
     public struct LowHigh
     {
         public bool high { get; set; }
-        public void NewLowHigh(bool high)
-        {
-            this.high = high;
-        }
+
     }
     public struct Dozen
     {
         public int dozen { get; }
-        public Dozen(int dozen)
-        {
-            this.dozen = dozen;
-        }
+
     }
     public struct Columns
     {
         public int column { get; set; }
-        public void NewColumns(int column)
-        {
-            this.column = column;
-        }
+
     }
     public struct Rows
     {
         public int row { get; set; }
-        public void NewRows(int row)
-        {
-            this.row = row;
-        }
+
     }
     public struct DoubleRows
     {
         public int row1 { get; set; }
         public int row2 { get; set; }
-        public void NewDoubleRows(int row1, int row2)
-        {
-            this.row1 = row1;
-            this.row2 = row2;
-        }
+
     }
     public struct Split
     {
-        int number1 { get; set; }
-        int number2 { get; set; }
-        public void NewSplit(int number1, int number2)
-        {
-            this.number1 = number1;
-            this.number2 = number2;
-        }
+        public int number1 { get; set; }
+        public int number2 { get; set; }
+
     }
-    public struct CornerIntersection
+    public struct CornerBet
     {
         public int number1 { get; set; }
         public int number2 { get; set; }
         public int number3 { get; set; }
         public int number4 { get; set; }
-        public void NewCornerIntersection(int number1, int number2, int number3, int number4)
-        {
-            this.number1 = number1;
-            this.number2 = number2;
-            this.number3 = number3;
-            this.number4 = number4;
-        }
-
     }
 
 }

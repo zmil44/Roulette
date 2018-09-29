@@ -8,18 +8,10 @@ namespace Roulette
 {
     class DisplayWinningBin
     {
-        public void DisplayResult(SpinWheel spinWheel,Board[] rouletteBoard)
+        public void DisplayResult(SpinWheel spinWheel,Board[,] rouletteBoard)
         {
-            if (spinWheel.winningBin == 37)
-            {
-                Console.WriteLine($"The ball landed on 00 Green!");
-
-            }
-            else
-            {
-                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningBin].number} " +
-                    $"{rouletteBoard[spinWheel.winningBin].color}!");
-            }
+                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].number} " +
+                    $"{rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].color}!");
         }
     }
 }

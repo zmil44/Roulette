@@ -13,61 +13,168 @@ namespace Roulette
             var rouletteBoard = CreateBoard();
             Random rng = new Random();
             GetBet getBet= new GetBet();
-            SpecificNumberBet numberBet = new SpecificNumberBet();
+            SpecificNumberBet specificNumberBet = new SpecificNumberBet();
+            EvenOrOdd evenOrOddBet = new EvenOrOdd();
+            ColorBet colorBet = new ColorBet();
+            LowHigh lowHighBet = new LowHigh();
+            Dozen dozenBet = new Dozen();
+            Columns columnBet = new Columns();
+            Rows rowBet = new Rows();
+            DoubleRows doubleRowBet = new DoubleRows();
+            Split splitBet = new Split();
+            CornerBet cornerBet = new CornerBet();
             SpinWheel spinWheel = new SpinWheel(rng);
             DetermineWin determineWin = new DetermineWin();
             DisplayPossibleWinningBets displayPossibleWinningBets = new DisplayPossibleWinningBets();
             DisplayWinningBin displayWinningBin = new DisplayWinningBin();
             int categoryChoice;
-            //test numbers
-            //for (int i = 0; i < 100; i++)
+            DisplayBoard(rouletteBoard);
+
+            //for(int i=0;i<100;i++)
             //{
-            //    numberBet.NewSpecificNumberBet(1);
+            //    numberBet.numberBettingOn = 1;
             //    spinWheel.Spin();
             //    displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
             //    determineWin.IsSpecificNumberWin(spinWheel, numberBet, rouletteBoard);
+            //    //Console.ReadLine();
+            //    //Console.Clear();
             //}
             do
             {
                 getBet.DisplayPossibleBets();
                 categoryChoice = getBet.GetBetCategoryChoice();
-                numberBet.numberBettingOn=getBet.GetNumberBet();
+                // = getBet.GetNumberBet();
                 spinWheel.Spin();
                 displayWinningBin.DisplayResult(spinWheel, rouletteBoard);
-                determineWin.IsSpecificNumberWin(spinWheel, numberBet, rouletteBoard);
+                //determineWin.IsSpecificNumberWin(spinWheel, numberBet, rouletteBoard);
             } while (categoryChoice != 0);
 
 
 
         }
 
-        public static Board[] CreateBoard()
+        public static Board[,] CreateBoard()
         {
-            Board[] rouletteBoard = new Board[38];
-            for (int i = 0; i < rouletteBoard.Length; i++)
+            Board[,] rouletteBoard = new Board[3,12];
+            int number;
+            for(int i=0;i<3;i++)
             {
-                if (i == 0)
+                for (int j=0;j<12;j++)
                 {
-                    rouletteBoard[i] = new Board(i, "Green");
-                }
-                else if(i==37)
-                {
-                    rouletteBoard[i] = new Board(i, "Green");
+                    if(i==0)
+                    {
+                        number = j*3+3;
+                        if (number == 1 || number == 3 || number == 5 || number == 7 || number == 9 || number == 12 
+                            || number == 14 || number == 16 || number == 18 || number == 19 || number == 21 
+                            || number == 23 || number == 25 || number == 27 || number == 30 || number == 32 
+                            || number == 34 || number == 36)
+                        {
+                                rouletteBoard[i, j] = new Board(number, "Red");
+                        }
+                        else
+                        {
+                            rouletteBoard[i, j] = new Board(number, "Black");
+                        }
+                    }
+                    else if (i == 1)
+                    {
+                        if(j==0)
+                        {
+                            number = 2;
+                        }
+                        else
+                        {
+                            number = j * 3 + 2;
 
-                }
-                else if (i == 1 ||i==3|| i == 5 || i == 7 || i == 9 || i == 12 || i == 14 || i == 16
-                        || i == 18 || i == 19 || i == 21 || i == 23 || i == 25 || i == 27 || i == 30
-                        || i == 32 || i == 34 || i == 36)
-                {
-                    rouletteBoard[i] = new Board(i, "Red");
-                }
-                else
-                {
-                    rouletteBoard[i] = new Board(i, "Black");
+                        }
+                        if (number == 1 || number == 3 || number == 5 || number == 7 || number == 9 || number == 12
+                            || number == 14 || number == 16 || number == 18 || number == 19 || number == 21
+                            || number == 23 || number == 25 || number == 27 || number == 30 || number == 32
+                            || number == 34 || number == 36)
+                        {
+                            rouletteBoard[i, j] = new Board(number, "Red");
+                        }
+                        else
+                        {
+                            rouletteBoard[i, j] = new Board(number, "Black");
+                        }
+                    }
+                    else
+                    {
+                        if(j==0)
+                        {
+                            number = 1;
+                        }
+                        else
+                        {
+                            number = j * 3 + 1;
+                        }
+                        if (number == 1 || number == 3 || number == 5 || number == 7 || number == 9 || number == 12
+                            || number == 14 || number == 16 || number == 18 || number == 19 || number == 21
+                            || number == 23 || number == 25 || number == 27 || number == 30 || number == 32
+                            || number == 34 || number == 36)
+                        {
+                            rouletteBoard[i, j] = new Board(number, "Red");
+                        }
+                        else
+                        {
+                            rouletteBoard[i, j] = new Board(number, "Black");
+                        }
+                    }
+                   
                 }
             }
             return rouletteBoard;
         }
+        public static void DisplayBoard(Board[,] rouletteBoard)
+        {
+            string output;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 12; j++)
+                {
+                    output = String.Format("{0,-1} {1,-3}  ", rouletteBoard[i, j].number, rouletteBoard[i, j].color);
+                    Console.Write(output);
+                }
+                Console.WriteLine();
+            }
+        }
+        //public static Object[] Bets()
+        //{
+        //    Object[] bets = new object[10];
+        //    SpecificNumberBet specificNumberBet = new SpecificNumberBet();
+        //    EvenOrOdd evenOrOddBet = new EvenOrOdd();
+        //    ColorBet colorBet= new ColorBet();
+        //    LowHigh lowHighBet = new LowHigh();
+        //    Dozen dozenBet = new Dozen();
+        //    Columns columnBet = new Columns();
+        //    Rows rowBet=new Rows();
+        //    DoubleRows doubleRowBet = new DoubleRows();
+        //    Split splitBet = new Split();
+        //    CornerBet cornerBet = new CornerBet();
+        //    bets[0]=specificNumberBet;
+        //    bets[1]=evenOrOddBet;
+        //    bets[2]=colorBet;
+        //    bets[3]=lowHighBet;
+        //    bets[4]=dozenBet;
+        //    bets[5]=columnBet;
+        //    bets[6] = rowBet;
+        //    bets[7]=doubleRowBet;
+        //    bets[8]=splitBet;
+        //    bets[9]=cornerBet;
+        //    //bets.Add(specificNumberBet);
+        //    //bets.Add(evenOrOddBet);
+        //    //bets.Add(colorBet);
+        //    //bets.Add(lowHighBet);
+        //    //bets.Add(dozenBet);
+        //    //bets.Add(columnBet);
+        //    //bets.Add(rowBet);
+        //    //bets.Add(doubleRowBet);
+        //    //bets.Add(splitBet);
+        //    //bets.Add(cornerBet);
+        //    return bets;
+            
+        //}
 
     }
 }
