@@ -17,8 +17,8 @@ namespace Roulette
         }
         public void Spin()
         {
-            winningRow = rng.Next(3);
-            winningColumn = rng.Next(12);
+            winningRow = rng.Next(12);
+            winningColumn = rng.Next(3);
         }
     }
 }

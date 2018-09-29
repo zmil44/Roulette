@@ -15,17 +15,17 @@ namespace Roulette
             Console.WriteLine("2. Color");
             Console.WriteLine("3. Even or Odd");
             Console.WriteLine("4. Lows (1-18) or Highs (19-36");
-            Console.WriteLine("5. Dozens (1-12, 13-24, 25-36");
+            Console.WriteLine("5. Dozens (1-12, 13-24, 25-36)");
             Console.WriteLine("6. Columns (first second or third)");
-            Console.WriteLine("7. Street (rows) (1,2,3) (4,5,6) etc etc");
-            Console.WriteLine("8. Numbers double rows");
-            Console.WriteLine("9. Split: edge of any two contiguos numbers");
+            Console.WriteLine("7. Street (rows) (examples 1,2,3 or 4,5,6)");
+            Console.WriteLine("8. Double row (examples 1/2/3/4/5/6 or 22/23/24/25/26/26) ");
+            Console.WriteLine("9. Split: edge of any two contiguos numbers (example: 1/4 or 2/3");
             Console.WriteLine("10. Corner intersecion of any four contiguous numbers (ie 1/2/4/5 or 23/24/26/27");
             Console.WriteLine("0. Quit.");
 
         }
 
-        public int GetBetCategoryChoice()
+        public int GetBetCategoryChoice()//works
         {
             int categoryChoice = -1;
             while (categoryChoice < 0 || categoryChoice > 10)
@@ -47,7 +47,7 @@ namespace Roulette
             }
             return categoryChoice;
         }
-        public int GetNumberBet()
+        public int GetNumberBet()//works
         {
             int bet = 0;
             while (bet <= 0 || bet > 38)
@@ -68,28 +68,26 @@ namespace Roulette
             }
             return bet;
         }
-        public char GetColorBet()
+        public int GetColorBet()
         {
-            char colorBet = 'N';
-            while (colorBet != 'R' || colorBet != 'B')
+            int colorBet = -1;
+            while (colorBet < 1 || colorBet > 2)
             {
-                Console.WriteLine("What Color would you like to bet on? enter r for red and b for black");
-                colorBet = char.Parse(Console.ReadLine());
-                colorBet = char.ToUpper(colorBet);
+                Console.WriteLine("What Color would you like to bet on? enter 1 for red and 2 for black");
+                colorBet = int.Parse(Console.ReadLine());
             }
             return colorBet;
-        }
-        public bool EvensOdds()
+        }//todo add try catch
+        public bool EvensOdds()//todo add try catch
         {
             bool evenOdd;
-            char input = 'n';
-            while (input != 'E' || input != 'O')
+            int input = 0;
+            while (input <=0 || input >2)
             {
-                Console.WriteLine("Would you like even or odds? Enter e for evens and o for odds");
-                input = char.Parse(Console.ReadLine());
-                input = char.ToUpper(input);
+                Console.WriteLine("Would you like even or odds? Enter 2 for evens and 1 for odds");
+                input = int.Parse(Console.ReadLine());
             }
-            if (input == 'E')
+            if (input == 2)
             {
                 evenOdd = true;
             }
@@ -99,27 +97,26 @@ namespace Roulette
             }
             return evenOdd;
         }
-        public bool LowHighBet()
+        public bool LowHighBet()//TODO add try catch
         {
-            bool lowHigh;
-            char input = 'n';
-            while (input != 'L' || input != 'H')
+            bool high;
+            int input;
+            do
             {
-                Console.WriteLine("Would you like low or high? Enter l for low and h for high");
-                input = char.Parse(Console.ReadLine());
-                input = char.ToUpper(input);
-            }
-            if (input == 'E')
+                Console.WriteLine("Would you like low or high? Enter 1 for low and 2 for high");
+                input = int.Parse(Console.ReadLine());
+            } while (input <=0 || input >2);
+            if (input == 2)
             {
-                lowHigh = true;
+                high = true;
             }
             else
             {
-                lowHigh = false;
+                high = false;
             }
-            return lowHigh;
+            return high;
         }
-        public int DozensBet()
+        public int DozensBet()//works
         {
             int bet = 0;
             while (bet <= 0 || bet > 3)
@@ -142,7 +139,7 @@ namespace Roulette
             }
             return bet;
         }
-        public int ColumnBet()
+        public int ColumnBet()//todo fix wont select right column
         {
             int bet = 0;
             while (bet <= 0 || bet > 3)
@@ -165,7 +162,7 @@ namespace Roulette
             }
             return bet;
         }
-        public int RowBet()
+        public int RowBet()//
         {
 
             int bet = 0;
@@ -188,11 +185,11 @@ namespace Roulette
             }
             return bet;
         }
-        public void DoubleRowBet(DoubleRows doubleRowBet)
+        public void DoubleRowBet(DoubleRows doubleRowBet)//todo fix so you cant pick rows that arent next to each other
         {
             int bet = 0;
             int bet2 = 12;
-            while (bet <= 0 && bet > 12 && (bet + 1 == bet2 || bet - 1 == bet2))
+            do
             {
                 try
                 {
@@ -209,15 +206,15 @@ namespace Roulette
                 {
                     Console.WriteLine("Please try again.");
                 }
-            }
+            } while (((bet <= 0 || bet > 12) && (bet2<=0 ||bet2>12)) || (bet + 1 != bet2 && bet - 1 != bet2));
             doubleRowBet.row1 = bet;
             doubleRowBet.row2 = bet2;
         }
         public void SplitBet(Split split)
         {
-            int bet = 0;
-            int bet2 = 37;
-            while (bet <= 0 && bet > 36 && (Math.Abs(bet - bet2) <= 3 && Math.Abs(bet - bet2) != 2))
+            int bet=0;
+            int bet2=0;
+            do
             {
                 try
                 {
@@ -234,26 +231,33 @@ namespace Roulette
                 {
                     Console.WriteLine("Please try again.");
                 }
-            }
+            } while (((bet <= 0 || bet > 36) && (bet2<=0 || bet2>36)) || Math.Abs(bet - bet2) > 3 || Math.Abs(bet - bet2) == 2 ||(bet%3==0 &&bet2%3==1)) ;
             split.number1 = bet;
             split.number2 = bet2;
 
         }
-        public void CornerBet(Corner corner)
+        public void CornerBet(Corner corner)//todo fix
         {
             int num1=0, num2=0, num3=0, num4=0;
+            int[] numbers = new int[4];
             do
             {
                 try
                 {
                     Console.WriteLine("Enter the first number of your corner");
                     num1 = int.Parse(Console.ReadLine());
+                    numbers[0] = num1;
                     Console.WriteLine("Enter the second number of your corner");
                     num2 = int.Parse(Console.ReadLine());
+                    numbers[1] = num2;
                     Console.WriteLine("Enter the third number of your corner");
                     num3 = int.Parse(Console.ReadLine());
+                    numbers[2] = num3;
                     Console.WriteLine("Enter the fourth number of your corner");
                     num4 = int.Parse(Console.ReadLine());
+                    numbers[3] = num4;
+                    Array.Sort(numbers);
+
                 }
                 catch (FormatException e)
                 {
@@ -263,8 +267,9 @@ namespace Roulette
                 {
                     Console.WriteLine("Please try again.");
                 }
-            } while (((num1 >= 1 && num1 <= 36) && (num2 >= 1 && num2 <= 36) && (num3 >= 1 && num3 <= 36) && (num4 >= 1 && num4 <= 36))
-            && (Math.Abs(num1-num2)<=4 && Math.Abs(num1 - num3) <= 4 && Math.Abs(num1 - num4) <= 4 ));
+            } while (((num1 < 1 || num1 > 36) && (num2 < 1 || num2 > 36) && (num3 < 1 || num3 > 36) && (num4 < 1 || num4 > 36))
+            || (Math.Abs(num1 - num2) > 4 || Math.Abs(num1 - num3) > 4 || Math.Abs(num1 - num4) > 4) || 
+            numbers[1]-numbers[0]==2||numbers[2] - numbers[0] == 2 );
             corner.number1 = num1;
             corner.number2 = num2;
             corner.number3 = num3;
@@ -279,7 +284,7 @@ namespace Roulette
     }
     public struct ColorBet
     {
-        public char colorBettingOn { get; set; }
+        public int colorBettingOn { get; set; }
 
     }
     public struct EvenOrOdd
@@ -293,7 +298,7 @@ namespace Roulette
     }
     public struct Dozen
     {
-        public int dozen { get; }
+        public int dozen { get; set; }
 
     }
     public struct Columns

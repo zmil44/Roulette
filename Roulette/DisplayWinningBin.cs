@@ -10,8 +10,8 @@ namespace Roulette
     {
         public void DisplayResult(SpinWheel spinWheel,Board[,] rouletteBoard)
         {
-                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].number} " +
-                    $"{rouletteBoard[spinWheel.winningRow, spinWheel.winningColumn].color}!");
+                Console.WriteLine($"The ball landed on {rouletteBoard[spinWheel.winningColumn, spinWheel.winningRow].number} " +
+                    $"{rouletteBoard[spinWheel.winningColumn, spinWheel.winningRow].color}!");
         }
     }
 }
